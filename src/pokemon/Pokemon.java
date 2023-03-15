@@ -6,6 +6,7 @@ package pokemon;
 
 import java.util.Scanner;
 import java.util.HashMap;
+import pokemon.creatures.pokemon;
 
 public class Pokemon {
 	
@@ -100,11 +101,25 @@ String opponent = null;
 
 	
 
-	
+	public static void test()
+        {
+            pokemon pkm1 = new pokemon("Pikachu", 110, 16, true);
+            pokemon pkm2 = new pokemon("Charmander", 200, 31, true);
+            boolean winner = false;
+            
+            while(!winner)
+            {
+                winner = pkm2.attacked(pkm1.attack());
+                if(winner){break;}
+                winner = pkm1.attacked(pkm1.attack());
+            }
+            System.out.print("Win!");
+        }
 	
 	public static void main (String[] args)
 	{
-		adventure();
+            test();
+		//adventure();
 	}
 	
 	
