@@ -4,6 +4,7 @@
  */
 package pokemon.creatures;
 
+import java.util.Random;
 import java.util.Scanner;
 import pokemon.attacks.attack;
 
@@ -25,6 +26,9 @@ public class pokemon {
         this.hp = hp;
         this.IV = IV;
         this.playerControlled = pc;
+        
+        //Create way to set moves
+        
         this.atk[0] = new attack("Basic", 5);
         this.atk[1] = new attack("Power", 10);
     }
@@ -38,26 +42,29 @@ public class pokemon {
             {
                 System.out.println(i + ". " + atk[i-1].getName());
             }
-        }
-        
-        Scanner scan = new Scanner(System.in);
-        while(choice == 0)
-        {
-            try
+            
+            Scanner scan = new Scanner(System.in);
+            while(choice == 0)
             {
-                choice = scan.nextInt();
-                if(choice > 2 || choice < 1)
+                try
                 {
-                    System.out.println(choice + " is not a valid input");
+                    choice = scan.nextInt();
+                    if(choice > 2 || choice < 1)
+                    {
+                        System.out.println(choice + " is not a valid input");
+                        choice = 0;
+                    }
+                }catch(NumberFormatException e)
+                {
                     choice = 0;
+                    System.out.println(e);
                 }
-            }catch(NumberFormatException e)
-            {
-                choice = 0;
-                System.out.println(e);
             }
+        }else{
+            Random ran = new Random();
+            choice = ran.nextInt(1,2);
+                    
         }
-        
         return atk[choice-1].getAttackValue(this.IV);
     }
     
@@ -65,7 +72,7 @@ public class pokemon {
     {
         if(attack > this.hp)
         {
-            System.out.print(this.name + " is dead");
+            System.out.println(this.name + " is dead");
             return true;
         }else{
             this.hp -= attack;

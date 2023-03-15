@@ -104,16 +104,19 @@ String opponent = null;
 	public static void test()
         {
             pokemon pkm1 = new pokemon("Pikachu", 110, 16, true);
-            pokemon pkm2 = new pokemon("Charmander", 200, 31, true);
+            pokemon pkm2 = new pokemon("Charmander", 200, 31, false);
+            
+            //TODO: Create way to choose pokemon
+            
             boolean winner = false;
             
             while(!winner)
             {
-                winner = pkm2.attacked(pkm1.attack());
+                winner = pkm2.attacked(pkm1.attack()); // returns true if pokemon dies
                 if(winner){break;}
-                winner = pkm1.attacked(pkm1.attack());
+                winner = pkm1.attacked(pkm2.attack());
             }
-            System.out.print("Win!");
+            System.out.println("Win!");
         }
 	
 	public static void main (String[] args)
